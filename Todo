@@ -1,7 +1,7 @@
-Faire commande /play
+Faire commande /play (Jeudi)
     --> lance le jeu en "solo" (pure random)
 
-Pour la commande /challenge : possibilité
+Pour la commande /challenge (Vendredi) : possibilité
     --> Faire un message général pour annoncer le début de la game
         Le reste se fait en messages éphémères qui alternent entre joueurs
         Message général en fin de partie pour annoncer les scores et le vainqueur.
