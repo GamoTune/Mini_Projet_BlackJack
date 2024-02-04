@@ -7,7 +7,7 @@ module.exports = { //Exportation de la commande
 
     async execute(interaction) { //On définit le code à exécuter
 
-        await interaction.reply({ 
+        await interaction.reply({
             embeds: [
                 new EmbedBuilder()
                     .setColor('#0099ff')
