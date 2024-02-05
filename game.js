@@ -212,3 +212,30 @@ function updateScores() {
 function getNextCard() {
     return deck.shift(); // On retourne la première carte du deck
 }
+
+
+/*
+
+Pour info :
+
+newGameButton.addEventListener('click', function () {}
+
+Cette ligne ajoute une écoute d'événement pour savoir quand le bouton est "click".
+Quand le bouton est cliqué, il exécute la fonction anonyme (cad que au lieu d'appeler une fonction défini ailleur, on la défini directement dans l'écoute d'événement).
+Elle est définie par la syntaxe function() {}.
+Donc pour remplacer cette ce morceaux de code par une commande discord, il va falloir refaire la fonction (juste copier coller) pourqu'elle soit utilisable dans discord.
+
+Exemple :
+
+function newGame() {
+    bla bla bla
+}
+
+En suite, tu pourra l'appeler dans la commande discord en utilisant le require() :
+const game = require('game.js');
+
+Mais pour ça faut exporter la fonction avec module.exports :
+
+module.exports = { newGame }; // Tu le fait en dessous de la fonction c plus simple
+
+*/
