@@ -17,25 +17,5 @@ module.exports = { //Exportation de la commande
             ]
 
         });
-        new SlashCommandBuilder()
-        .setName("challenge")
-        .setDescription("Qui voulez vous challenger ?")
-        .addStringOption(option =>
-            option
-                .setName("@")
-                .setDescription("L\'utilisateur ciblé")
-                .setRequired(true))
-    
-    execute(interaction)
-        
-        await interaction.reply({
-            embeds: [
-                new EmbedBuilder()
-                .setColor('Red')
-                .setTitle("CHALLENGE !")
-                .setDescription("Vous avez challengé")
-            ]
-        })
-        return;
-    }
+    },
 };
