@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js'); //Importati
 module.exports = { //Exportation de la commande
     data: new SlashCommandBuilder() //On définit les paramètres de la commande
         .setName('start_game')
-        .setDescription('Ajoute des données à un match'),
+        .setDescription('commence un match en solo'),
 
     async execute(interaction) { //On définit le code à exécuter
 
@@ -17,6 +17,20 @@ module.exports = { //Exportation de la commande
             ]
 
         });
+/*        new SlashCommandBuilder()
+        .setName("challenge")
+        .setDescription("Permet de faire une partie avec qlq'un :)")
+    
+    execute(interaction)
+        
+        await interaction.reply({
+            embeds: [
+                new EmbedBuilder()
+                .setColor('Red')
+                .setTitle("CHALLENGE !")
+                .setDescription("Vous avez challengé")
+            ]
+        })*/
         return;
     }
 };
