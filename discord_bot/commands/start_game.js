@@ -17,9 +17,14 @@ module.exports = { //Exportation de la commande
             ]
 
         });
-/*        new SlashCommandBuilder()
+        new SlashCommandBuilder()
         .setName("challenge")
-        .setDescription("Permet de faire une partie avec qlq'un :)")
+        .setDescription("Qui voulez vous challenger ?")
+        .addStringOption(option =>
+            option
+                .setName("@")
+                .setDescription("L\'utilisateur ciblé")
+                .setRequired(true))
     
     execute(interaction)
         
@@ -30,7 +35,7 @@ module.exports = { //Exportation de la commande
                 .setTitle("CHALLENGE !")
                 .setDescription("Vous avez challengé")
             ]
-        })*/
+        })
         return;
     }
 };
