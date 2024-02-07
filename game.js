@@ -6,11 +6,6 @@ let values = ['Ace', 'King', 'Queen', 'Jack', // Les valeurs
     'Five', 'Four', 'Three', 'Two', 'One'
 ];
 
-// La on récupère les éléments de la page donc nous on s'en fous parce que le jeu va etre sur discord (faudra faire gaffe a attribuer les bonnes valeurs aux bonnes variables)
-
-// La en gros il cache les bouton mais on s'en fous
-hitButton.style.display = 'none';
-stayButton.style.display = 'none';
 
 // La on crée les variables qui vont servir a stocker les cartes du joueur et du dealer
 let gameStart = false, // La c'est pour savoir si la partie a commencé
@@ -32,9 +27,7 @@ function newGame() {
     shuffleDeck(deck); // La on mélange le deck
     dealerCards = [getNextCard(), getNextCard()]; // La on donne 2 cartes au dealer
     playerCards = [getNextCard(), getNextCard()]; // La on donne 2 cartes au joueur
-    newGameButton.style.display = 'none'; // La on cache le bouton pour lancer une nouvelle partie
-    hitButton.style.display = 'inline'; // La on affiche le bouton pour tirer une carte
-    stayButton.style.display = 'inline'; // La on affiche le bouton pour rester
+
     showStatus(); // La on affiche le status de la partie
 }
 
@@ -140,9 +133,9 @@ function getCardNumericValue(card) { // La fonction pour récupérer la valeur n
 
 // La fonction pour afficher le status de la partie
 function showStatus() { // La fonction pour afficher le status de la partie
+    let txt;
     if (!gameStart) { // Si la partie a pas commencé
-        textArea.innerText = 'Welcome to Blackjack!'; // On affiche un message de bienvenue
-        return; // On arrête la fonction
+        return 'Welcome to Blackjack!'; // On affiche un message de bienvenue
     }
 
     let dealerCardString = ''; // On crée une variable pour stocker les cartes du dealer
@@ -157,7 +150,7 @@ function showStatus() { // La fonction pour afficher le status de la partie
     updateScores(); // On met a jour les scores
 
     // On affiche les cartes et les scores (mais c dans un textArea donc faudra adapter pour discord)
-    textArea.innerText = 'Dealer has:\n' +
+    txt = 'Dealer has:\n' +
         dealerCardString +
         '(score: ' + dealerScore + ')\n\n' +
 
@@ -166,18 +159,14 @@ function showStatus() { // La fonction pour afficher le status de la partie
         '(score: ' + playerScore + ')\n\n';
 
     if (gameOver) { // Si la partie est finie
-        if (playerWon) { // Si le joueur a gagné
-            textArea.innerText += "YOU WIN!"; // On affiche "YOU WIN!"
+        if (playWon) { // Si le joueur a gagné
+            txt += "YOU WIN!"; // On affiche "YOU WIN!"
         }
         else { // Sinon
-            textArea.innerText += "DEALER WINS"; // On affiche "DEALER WINS"
+            txt += "DEALER WINS"; // On affiche "DEALER WINS"
         }
-        // Des boutons... encore des boutons
-        newGameButton.style.display = 'inline';
-        hitButton.style.display = 'none';
-        stayButton.style.display = 'none';
-
     }
+    return txt
 }
 
 // La fonction pour récupérer le score
