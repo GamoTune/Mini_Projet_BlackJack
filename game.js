@@ -7,10 +7,6 @@ let values = ['Ace', 'King', 'Queen', 'Jack', // Les valeurs
 ];
 
 // La on récupère les éléments de la page donc nous on s'en fous parce que le jeu va etre sur discord (faudra faire gaffe a attribuer les bonnes valeurs aux bonnes variables)
-let textArea = document.getElementById('text-area'); //
-let newGameButton = document.getElementById('new-game-button');
-let hitButton = document.getElementById('hit-button');
-let stayButton = document.getElementById('stay-button');
 
 // La en gros il cache les bouton mais on s'en fous
 hitButton.style.display = 'none';
@@ -27,10 +23,10 @@ let gameStart = false, // La c'est pour savoir si la partie a commencé
     deck = []; // La c'est pour stocker le deck
 
 // La c'est l'ajout d'une écoute d'evenement sur le bouton pour lancer la partie (donc pour nous ça sera une commande /)
-newGameButton.addEventListener('click', function () {
-    gameStarted = true; // La on dit que la partie a commencé
+function newGame() {
+    gameStart = true; // La on dit que la partie a commencé
     gameOver = false; // La on dit que la partie est pas finie
-    playerWon = false; // La on dit que le joueur a pas gagné
+    playWon = false; // La on dit que le joueur a pas gagné
 
     deck = createDeck(); // La on crée le deck
     shuffleDeck(deck); // La on mélange le deck
@@ -40,7 +36,7 @@ newGameButton.addEventListener('click', function () {
     hitButton.style.display = 'inline'; // La on affiche le bouton pour tirer une carte
     stayButton.style.display = 'inline'; // La on affiche le bouton pour rester
     showStatus(); // La on affiche le status de la partie
-})
+}
 
 // La fonction pour créer le deck
 function createDeck() {
@@ -68,18 +64,18 @@ function shuffleDeck(deck) {
 }
 
 // La on ajoute une écoute d'événement sur le bouton pour tirer une carte (donc pour nous ça sera une commande /)
-hitButton.addEventListener('click', function () {
+function hit() {
     playerCards.push(getNextCard());
     checkForEndOfGame();
     showStatus();
-});
+}
 
 // La on ajoute une écoute d'événement sur le bouton pour rester (donc pour nous ça sera une commande /)
-stayButton.addEventListener('click', function () {
+function stay() {
     gameOver = true;
     checkForEndOfGame();
     showStatus();
-});
+}
 
 // La fonction pour vérifier si la partie est finie
 function checkForEndOfGame() {
@@ -95,21 +91,21 @@ function checkForEndOfGame() {
     }
 
     if (playerScore > 21) { // Si le score du joueur est supérieur a 21
-        playerWon = false; // Le joueur a perdu
+        playWon = false; // Le joueur a perdu
         gameOver = true; // La partie est finie
     }
 
     else if (dealerScore > 21) { // Si le score du dealer est supérieur a 21
-        playerWon = true; // Le joueur a gagné
+        playWon = true; // Le joueur a gagné
         gameOver = true; // La partie est finie
     }
 
     else if (gameOver) { // Si la partie est finie
         if (playerScore > dealerScore) { // Si le score du joueur est supérieur au score du dealer
-            playerWon = true; // Le joueur a gagné
+            playWon = true; // Le joueur a gagné
         }
         else { // Sinon
-            playerWon = false; // Le joueur a perdu
+            playWon = false; // Le joueur a perdu
         }
     }
 }
@@ -144,7 +140,7 @@ function getCardNumericValue(card) { // La fonction pour récupérer la valeur n
 
 // La fonction pour afficher le status de la partie
 function showStatus() { // La fonction pour afficher le status de la partie
-    if (!gameStarted) { // Si la partie a pas commencé
+    if (!gameStart) { // Si la partie a pas commencé
         textArea.innerText = 'Welcome to Blackjack!'; // On affiche un message de bienvenue
         return; // On arrête la fonction
     }
