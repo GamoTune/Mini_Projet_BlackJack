@@ -27,7 +27,7 @@ class Game {
         this.dealerCards = [this.getNextCard(), this.getNextCard()]; // La on donne 2 cartes au dealer
         this.playerCards = [this.getNextCard(), this.getNextCard()]; // La on donne 2 cartes au joueur
 
-        this.showStatus(); // La on affiche le status de la partie
+        return this.showStatus(); // La on affiche le status de la partie
     }
 
     hit() {
@@ -128,40 +128,39 @@ class Game {
     }
 
     showStatus() { // La fonction pour afficher le status de la partie
-        let txt;
-        if (!this.gameStart) { // Si la partie a pas commencé
-            return 'Welcome to Blackjack!'; // On affiche un message de bienvenue
-        }
+        let info = {Dealer: {}, Player: {}, Winner: ""};
 
-        let dealerCardString = ''; // On crée une variable pour stocker les cartes du dealer
+        let dCards = []; // On crée une variable pour stocker les cartes du dealer
         for (let i = 0; i < this.dealerCards.length; i++) { // Pour chaque carte du dealer
-            dealerCardString += this.getCardString(this.dealerCards[i]) + '\n'; // On ajoute le nom de la carte a la variable
+            dCards.push(this.getCardString(this.dealerCards[i])); // On ajoute le nom de la carte a la variable
         }
-        let playerCardString = ''; // On crée une variable pour stocker les cartes du joueur
+        let pCards = []; // On crée une variable pour stocker les cartes du joueur
         for (let i = 0; i < this.playerCards.length; i++) { // Pour chaque carte du joueur
-            playerCardString += this.getCardString(this.playerCards[i]) + '\n'; // On ajoute le nom de la carte a la variable
+            pCards.push(this.getCardString(this.playerCards[i])); // On ajoute le nom de la carte a la variable
         }
 
         this.updateScores(); // On met a jour les scores
 
         // On affiche les cartes et les scores (mais c dans un textArea donc faudra adapter pour discord)
-        txt = 'Dealer has:\n' +
-            dealerCardString +
-            '(score: ' + this.dealerScore + ')\n\n' +
-
-            'Player has:\n' +
-            playerCardString +
-            '(score: ' + this.playerScore + ')\n\n';
-
+        info.Dealer = {
+            cards: dCards,
+            score: this.dealerScore
+        };
+        info.Player = {
+            cards: pCards,
+            score: this.playerScore
+        };
         if (this.gameOver) { // Si la partie est finie
             if (this.playWon) { // Si le joueur a gagné
-                txt += "YOU WIN!"; // On affiche "YOU WIN!"
+                info.Winner = "PLAYER WINS"; // On affiche "PLAYER WINS"
             }
             else { // Sinon
-                txt += "DEALER WINS"; // On affiche "DEALER WINS"
+                info.Winner = "DEALER WINS"; // On affiche "DEALER WINS"
             }
+        } else {
+            info.Winner = ""; // Sinon on affiche rien
         }
-        return txt
+        return info
     }
 
     getScore(cardArray) {
