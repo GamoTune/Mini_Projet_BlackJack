@@ -13,7 +13,7 @@ module.exports = { //Exportation de la commande
                 new EmbedBuilder()
                     .setColor('Red')
                     .setTitle("CHALLENGE !")
-                    .setDescription("Vous avez challengé")
+                    .setDescription("Vous avez challengé " + interaction.options.getUser('user').username + " !")
             ]
         });
     }
