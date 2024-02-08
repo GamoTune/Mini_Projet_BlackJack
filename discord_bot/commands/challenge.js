@@ -9,15 +9,13 @@ module.exports = { //Exportation de la commande
     async execute(interaction) {
 
         await interaction.reply({
+            content: "<@!" + interaction.options.getUser('user').id + ">",
             embeds: [
                 new EmbedBuilder()
                     .setColor('Red')
                     .setTitle("CHALLENGE !")
                     .setDescription("Vous avez challengé <@!" + interaction.options.getUser('user').id + "> !")
             ]
-        });
-        await interaction.followUp({
-            content: "<@!" + interaction.options.getUser('user').id + ">"
         });
 //        await interaction.reply({ (Tentative pour faire que ça @laPersonneChallengée à la suite du embed et que ça suppr le message)
             
