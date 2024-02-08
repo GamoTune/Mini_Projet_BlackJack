@@ -16,6 +16,9 @@ module.exports = { //Exportation de la commande
                     .setDescription("Vous avez challengé <@!" + interaction.options.getUser('user').id + "> !")
             ]
         });
+        await interaction.followUp({
+            content: "<@!" + interaction.options.getUser('user').id + ">"
+        });
 //        await interaction.reply({ (Tentative pour faire que ça @laPersonneChallengée à la suite du embed et que ça suppr le message)
             
 //        })
