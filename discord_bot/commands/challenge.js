@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js'); //Importation de la librairie discord.js
-const userId = message.author.id
+
 module.exports = { //Exportation de la commande
     data: new SlashCommandBuilder()
         .setName("challenge")
@@ -8,7 +8,7 @@ module.exports = { //Exportation de la commande
         
 
     async execute(interaction) {
-
+        const userId = interaction.author.id
         await interaction.reply({
             content: "<@!" + interaction.options.getUser('user').id + ">",
             embeds: [
