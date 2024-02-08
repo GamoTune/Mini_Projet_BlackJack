@@ -158,7 +158,7 @@ class Game {
                 info.Winner = "DEALER WINS"; // On affiche "DEALER WINS"
             }
         } else {
-            info.Winner = ""; // Sinon on affiche rien
+            info.Winner = "None"; // Sinon on affiche rien
         }
         return info
     }

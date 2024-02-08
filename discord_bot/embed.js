@@ -40,8 +40,13 @@ function create_game_data_embed(data) {
             value: String(player.score),
             inline: true
         });
+        fields.push({
+            name: "Game Status",
+            value: String(data.Winner),
+            inline: true,
+        });
 
-
+        console.log(fields);
         return new EmbedBuilder()
             .setTitle(title)
             .setColor(color)
@@ -50,6 +55,7 @@ function create_game_data_embed(data) {
             .setTimestamp()
             .setFooter({ text: "Blackjack" });
     }
+    
 }
 
 module.exports = { create_game_data_embed };

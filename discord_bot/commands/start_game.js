@@ -25,7 +25,7 @@ module.exports = { //Exportation de la commande
 
         const row = new ActionRowBuilder()
             .addComponents(hit, stay);
-
+        console.log()
         await interaction.followUp({
             content: "Nouvelle partie lancée !", //On envoie un message pour dire que la partie est lancée
             embeds: [create_game_data_embed(new_game)], //On envoie l'embed de la partie
@@ -45,7 +45,7 @@ module.exports = { //Exportation de la commande
             } else if (i.customId === 'stay') {
                 
                 var stay = game.stay();
-                
+
                 await i.update({ content: 'Vous avez choisi Stay!', embeds: [create_game_data_embed(stay)], components: [row] });
             }
         });
