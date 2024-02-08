@@ -33,13 +33,13 @@ class Game {
     hit() {
         this.playerCards.push(this.getNextCard());
         this.checkForEndOfGame();
-        this.showStatus();
+        return this.showStatus();
     }
 
     stay() {
         this.gameOver = true;
         this.checkForEndOfGame();
-        this.showStatus();
+        return this.showStatus();
     }
 
     createDeck() {

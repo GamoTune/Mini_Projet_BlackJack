@@ -21,7 +21,7 @@ module.exports = { //Exportation de la commande
         const stay = new ButtonBuilder()
             .setCustomId('stay')
             .setLabel('Stay')
-            .setStyle(ButtonStyle.Secondary);
+            .setStyle(ButtonStyle.Success);
 
         const row = new ActionRowBuilder()
             .addComponents(hit, stay);
@@ -32,12 +32,26 @@ module.exports = { //Exportation de la commande
             components: [row] //On ajoute les boutons
         }); //On envoie le message de début de partie
 
-        const collectorFilter = i => i.user.id === interaction.user.id;
+        const collectorFilter = i => i.user.id === interaction.user.id; //On définit le filtre pour le collector
 
-        try {
-            const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 60_000 });
-        } catch (e) {
-            await interaction.editReply({ content: 'Confirmation not received within 1 minute, cancelling', components: [] });
-        }
+        const collector = interaction.channel.createMessageComponentCollector({ filter: collectorFilter, time: 60000 });
+
+        collector.on('collect', async i => {
+            if (i.customId === 'hit') {
+
+                var hit = game.hit();
+
+                await i.update({ content: 'Vous avez choisi Hit!', embeds: [create_game_data_embed(hit)], components: [row] });
+            } else if (i.customId === 'stay') {
+                
+                var stay = game.stay();
+                
+                await i.update({ content: 'Vous avez choisi Stay!', embeds: [create_game_data_embed(stay)], components: [row] });
+            }
+        });
+
+        collector.on('end', collected => {
+            console.log(`Collected ${collected.size} interactions.`);
+        });
     },
 };
