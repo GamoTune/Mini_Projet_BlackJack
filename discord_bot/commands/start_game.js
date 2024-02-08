@@ -12,8 +12,9 @@ module.exports = { //Exportation de la commande
 
         const game = new Game(); //On crée une nouvelle partie
         const new_game = game.newGame(); //On lance une nouvelle partie
-        await interaction.editReply("Création d'une nouvelle partie...\nNouvelle partie lancée !"); //On envoie un message pour dire que la partie est lancée
+        //await interaction.editReply("Création d'une nouvelle partie...\nNouvelle partie lancée !"); //On envoie un message pour dire que la partie est lancée
         await interaction.followUp({
+            content: "Nouvelle partie lancée !", //On envoie un message pour dire que la partie est lancée
             embeds: [create_embed(new_game)] //On envoie l'embed de la partie
         }); //On envoie le message de début de partie
     },
