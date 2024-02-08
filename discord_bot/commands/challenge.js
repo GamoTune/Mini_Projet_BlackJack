@@ -1,4 +1,31 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js'); //Importation de la librairie discord.js
+const userId = message.author.id
+module.exports = { //Exportation de la commande
+    data: new SlashCommandBuilder()
+        .setName("challenge")
+        .setDescription("Qui voulez vous challenger ?")
+        .addUserOption(option => option.setName('user').setDescription('Qui voulez vous challenger ?').setRequired(true)),
+        
+
+    async execute(interaction) {
+
+        await interaction.reply({
+            content: "<@!" + interaction.options.getUser('user').id + ">",
+            embeds: [
+                new EmbedBuilder()
+                    .setColor('Red')
+                    .setTitle("CHALLENGE !")
+                    .setDescription("Vous avez été challengé(e) par <@!" + userId + "> !")
+            ]
+        });
+//        await interaction.reply({ (Tentative pour faire que ça @laPersonneChallengée à la suite du embed et que ça suppr le message)
+            
+//        })
+    }
+};
+
+/* ----- Save -----
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js'); //Importation de la librairie discord.js
 
 module.exports = { //Exportation de la commande
     data: new SlashCommandBuilder()
@@ -22,3 +49,4 @@ module.exports = { //Exportation de la commande
 //        })
     }
 };
+ */
