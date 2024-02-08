@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 
-function create_embed(data) {
+function create_game_data_embed(data) {
     let status = data.Winner,
         dealer = data.Dealer,
         player = data.Player,
@@ -51,4 +51,4 @@ function create_embed(data) {
     }
 }
 
-module.exports = { create_embed };
+module.exports = { create_game_data_embed };

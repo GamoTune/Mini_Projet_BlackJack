@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js'); //Importation de la librairie discord.js
 const { Game } = require('../../game.js'); //On importe le jeu
-const { create_embed } = require('../embed.js'); //On importe la fonction de création d'embed
+const { create_game_data_embed } = require('../embed.js'); //On importe la fonction de création d'embed
 
 module.exports = { //Exportation de la commande
     data: new SlashCommandBuilder() //On définit les paramètres de la commande
@@ -15,7 +15,7 @@ module.exports = { //Exportation de la commande
         //await interaction.editReply("Création d'une nouvelle partie...\nNouvelle partie lancée !"); //On envoie un message pour dire que la partie est lancée
         await interaction.followUp({
             content: "Nouvelle partie lancée !", //On envoie un message pour dire que la partie est lancée
-            embeds: [create_embed(new_game)] //On envoie l'embed de la partie
+            embeds: [create_game_data_embed(new_game)] //On envoie l'embed de la partie
         }); //On envoie le message de début de partie
     },
 };
