@@ -20,14 +20,11 @@ module.exports = {
         const reponse = await interaction.reply({ content: 'Test', components: [row]});
 
         const collectorFilter = i => i.user.id === interaction.user.id;
-        try{
-            const confirm = await interaction.channel.awaitMessageComponent({ filter: collectorFilter, time: 2000 });
-            if (confirm.customId === 'lock') {
-                return;
-            }
-        } catch (error) {
-            row.components[0].setDisabled(true);
-            interaction.editReply({ components: [row] });
+
+        try {
+            const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 60_000 });
+        } catch (e) {
+            await interaction.editReply({ content: 'Confirmation not received within 1 minute, cancelling', components: [] });
         }
 
 

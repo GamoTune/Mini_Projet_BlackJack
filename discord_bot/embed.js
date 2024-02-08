@@ -47,7 +47,8 @@ function create_game_data_embed(data) {
             .setColor(color)
             .setDescription(description)
             .addFields(fields)
-            .setTimestamp();
+            .setTimestamp()
+            .setFooter({ text: "Blackjack" });
     }
 }
 
