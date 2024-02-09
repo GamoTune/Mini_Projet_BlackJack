@@ -25,7 +25,7 @@ module.exports = { //Exportation de la commande
 
         const row = new ActionRowBuilder()
             .addComponents(hit, stay);
-        console.log()
+        console.log(create_game_data_embed(new_game))
         await interaction.followUp({
             content: "Nouvelle partie lancée !", //On envoie un message pour dire que la partie est lancée
             embeds: [create_game_data_embed(new_game)], //On envoie l'embed de la partie
