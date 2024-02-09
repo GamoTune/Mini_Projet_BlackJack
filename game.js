@@ -186,6 +186,10 @@ class Game {
     }
 
     getNextCard() {
+        if (this.deck.length === 0) { // Si le deck est vide
+            this.deck = this.createDeck(); // On recrée le deck
+            this.shuffleDeck(this.deck); // On le mélange
+        }
         return this.deck.shift(); // On retourne la première carte du deck
     }
 }

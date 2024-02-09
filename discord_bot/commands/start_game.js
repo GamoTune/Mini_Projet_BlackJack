@@ -43,10 +43,14 @@ module.exports = { //Exportation de la commande
 
                 await i.update({ content: 'Vous avez choisi Hit!', embeds: [create_game_data_embed(hit)], components: [row] });
             } else if (i.customId === 'stay') {
-                
+
                 var stay = game.stay();
 
                 await i.update({ content: 'Vous avez choisi Stay!', embeds: [create_game_data_embed(stay)], components: [row] });
+            }
+            if (i.isButton() && game.gameOver) {
+                await i.update({ content: 'La partie est terminée!', embeds: [create_game_data_embed(game)], components: [] });
+
             }
         });
 
