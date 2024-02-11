@@ -1,5 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder } = require('discord.js'); //Importation de la librairie discord.js
-const { Game } = require('../../game.js'); //On importe le jeu
+const { Game } = require('../../jeu.js'); //On importe le jeu
 const { create_game_data_embed } = require('../embed.js'); //On importe la fonction de création d'embed
 
 module.exports = { //Exportation de la commande
@@ -25,7 +25,7 @@ module.exports = { //Exportation de la commande
 
         const row = new ActionRowBuilder()
             .addComponents(hit, stay);
-        console.log(create_game_data_embed(new_game))
+
         await interaction.followUp({
             content: "Nouvelle partie lancée !", //On envoie un message pour dire que la partie est lancée
             embeds: [create_game_data_embed(new_game)], //On envoie l'embed de la partie
@@ -41,16 +41,18 @@ module.exports = { //Exportation de la commande
 
                 var hit = game.hit();
 
+                if (hit.etat == 'perdu' || hit.etat == 'gagne') {
+                    await i.update({ content: 'La partie est terminée!', embeds: [create_game_data_embed(hit)], components: [] });
+                    collector.stop();
+                }
+                else if (hit.etat === 'en_cours')
                 await i.update({ content: 'Vous avez choisi Hit!', embeds: [create_game_data_embed(hit)], components: [row] });
-            } else if (i.customId === 'stay') {
-
-                var stay = game.stay();
-
-                await i.update({ content: 'Vous avez choisi Stay!', embeds: [create_game_data_embed(stay)], components: [row] });
             }
-            if (i.isButton() && game.gameOver) {
-                await i.update({ content: 'La partie est terminée!', embeds: [create_game_data_embed(game)], components: [] });
 
+            else if (i.customId === 'stay') {
+                var stay = game.stay();
+                await i.update({ content: 'La partie est terminée!', embeds: [create_game_data_embed(stay)], components: [] });
+                collector.stop();
             }
         });
 

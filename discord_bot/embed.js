@@ -1,58 +1,49 @@
 const { EmbedBuilder } = require('discord.js');
 
 function create_game_data_embed(data) {
-    let status = data.Winner,
-        dealer = data.Dealer,
-        player = data.Player,
-        color = "Blue",
-        title = "Blackjack",
-        description = "Partie en cours",
+    //console.log(data)
+    let footer = data.etat === "en_cours" ? "La partie est en cours" : "La partie est terminée",
         fields = [];
     fields.push({
-        name: "Dealer",
+        name: "Joueur",
+        value: "Vous",
+        inline: true
+    });
+    fields.push({
+        name: "Cartes",
+        value: data.joueur.cartes.join("\n"),
+        inline: true
+    });
+    fields.push({
+        name: "Score",
+        value: String(data.joueur.score),
+        inline: true
+    });
+
+    fields.push({
+        name: "Banque",
         value: "Bot",
         inline: true
     });
     fields.push({
-        name: "Cards",
-        value: dealer.cards.join("\n"),
+        name: "Cartes",
+        value: data.banque.cartes.join("\n"),
         inline: true
     });
     fields.push({
         name: "Score",
-        value: String(dealer.score),
+        value: String(data.banque.score),
         inline: true
     });
 
-    fields.push({
-        name: "Player",
-        value: "You",
-        inline: true
-    });
-    fields.push({
-        name: "Cards",
-        value: player.cards.join("\n"),
-        inline: true
-    });
-    fields.push({
-        name: "Score",
-        value: String(player.score),
-        inline: true
-    });
-    fields.push({
-        name: "Game Status",
-        value: String(data.Winner),
-        inline: true,
-    });
 
-    console.log(fields);
     return new EmbedBuilder()
-        .setTitle(title)
-        .setColor(color)
-        .setDescription(description)
+        .setTitle("Blackjack")
+        .setColor("Blue")
+        .setDescription(data.etat)
         .addFields(fields)
         .setTimestamp()
-        .setFooter({ text: "Blackjack" });
+        .setFooter({ text: footer });
 }
 
 
