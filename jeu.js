@@ -14,7 +14,7 @@ class Game {
                 cartes: [],
                 score: 0
             },
-            etat: 'en_cours' // L'état de la partie
+            etat: 'Partie en cours' // L'état de la partie
         };
 
     }
@@ -81,7 +81,7 @@ class Game {
             this.infos.etat = 'perdu';
         }
         if (this.infos.banque.score > 21) {
-            this.infos.etat = 'gagne';
+            this.infos.etat = 'gagné';
         }
 
         return this.infoForEmbed();
@@ -93,11 +93,11 @@ class Game {
             this.infos.banque.score = this.calculerScore(this.infos.banque.cartes);
         }
         if (this.infos.banque.score > 21) {
-            this.infos.etat = 'gagne';
+            this.infos.etat = 'gagné';
         } else if (this.infos.banque.score >= this.infos.joueur.score) {
             this.infos.etat = 'perdu';
         } else {
-            this.infos.etat = 'gagne';
+            this.infos.etat = 'gagné';
         }
         return this.infoForEmbed();
     }

@@ -34,18 +34,18 @@ module.exports = { //Exportation de la commande
 
         const collectorFilter = i => i.user.id === interaction.user.id; //On définit le filtre pour le collector
 
-        const collector = interaction.channel.createMessageComponentCollector({ filter: collectorFilter, time: 60000 });
+        const collector = interaction.channel.createMessageComponentCollector({ filter: collectorFilter});
 
         collector.on('collect', async i => {
             if (i.customId === 'hit') {
 
                 var hit = game.hit();
 
-                if (hit.etat == 'perdu' || hit.etat == 'gagne') {
+                if (hit.etat == 'perdu' || hit.etat == 'gagné') {
                     await i.update({ content: 'La partie est terminée!', embeds: [create_game_data_embed(hit)], components: [] });
                     collector.stop();
                 }
-                else if (hit.etat === 'en_cours')
+                else if (hit.etat === 'Partie en cours')
                 await i.update({ content: 'Vous avez choisi Hit!', embeds: [create_game_data_embed(hit)], components: [row] });
             }
 
