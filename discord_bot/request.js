@@ -4,13 +4,7 @@ const axios = require('axios'); //Importation de la librairie axios
 
 function upload(data) { //Fonction pour uploader les stats des joueurs sur le serveur PHP
 
-
-    var json = {
-        info: "1",
-        joueur1: joueur1,
-        score: "21",
-    }
-    json = JSON.stringify(json);
+    var json = JSON.stringify(data); //On convertit l'objet JS en JSON
 
     axios.post("https://gamo.one/blackjack/getjson.php", {json: json},
         {
