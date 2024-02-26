@@ -1,0 +1,2 @@
+{"etat":"gagné","joueur":{"cartes":["Six de Pique","Trois de Coeur","Neuf de Coeur"],"score":18},"banque":{"cartes":["Valet de Carreau","Deux de Pique","Roi de Pique"],"score":22}}
+
