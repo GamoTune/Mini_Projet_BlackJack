@@ -83,7 +83,7 @@
     <main class="table">
       <?php
       // Ouverture du fichier des scores     
-      $filePath = get_template_directory_uri().'/scores.txt'; 
+      $filePath = 'scores.txt'; 
 
       // Fonction pour convertir les cartes en chiffres et symboles
       function convertCardName($cardName) {
@@ -131,7 +131,7 @@
       $sumParties = 0;
 
       // Lecture du fichier
-      $fileName = get_template_directory_uri().'/scores.txt';
+      $fileName = 'scores.txt';
       $handle = fopen($fileName, "r");
 
       if ($handle) {
