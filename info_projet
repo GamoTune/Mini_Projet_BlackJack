@@ -1,0 +1,12 @@
+Cahier des charges :
+- Jeu Blackjack simplifier
+- Interface simple et jolie
+- Sauvegarde des score et affichage
+
+Idee final :
+- Jeu coder en JS
+- Utilisation d'un bot discord pour jouer
+- Envoi des score sur un serveur web
+- Affichage des score sur https://gamo.one/blackjack
+
+code original du jeu : Avitansh Sharma https://embed.plnkr.co/plunk/QszK6V
